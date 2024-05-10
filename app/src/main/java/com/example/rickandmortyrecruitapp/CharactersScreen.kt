@@ -74,7 +74,7 @@ fun LoadedCharactersScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.main_title))
+                    Text(text = stringResource(id = R.string.main_title_top_bar))
                 },
                 scrollBehavior = scrollBehavior
             )

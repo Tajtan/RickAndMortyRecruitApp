@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RickAndMortyRecruitApp</string>
-    <string name="main_title">Rick and Morty characters</string>
+    <string name="main_title_top_bar">Rick and Morty characters</string>
+    <string name="details_title_top_bar">Character Details</string>
 </resources>
