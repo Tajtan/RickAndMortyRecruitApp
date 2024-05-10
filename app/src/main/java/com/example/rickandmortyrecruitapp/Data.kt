@@ -27,5 +27,10 @@ data class Character(
 }
 
 data class CharactersResponse(
+    val info: Pages,
     val results: List<Character>
+)
+
+data class Pages(
+    val pages: Int
 )

@@ -17,9 +17,21 @@ class MainViewModel: ViewModel() {
     private fun fetchCharacters(){
         viewModelScope.launch {
             try {
-                val response = characterService.getCharacters()
+                val allCharacters: MutableList<Character> = mutableListOf()
+                var currentPage = 1
+                var totalPages = 1
+
+                while (currentPage <= totalPages) {
+                    val response = characterService.getCharacters(currentPage)
+                    totalPages = response.info.pages
+
+                    allCharacters.addAll(response.results)
+
+                    currentPage++
+                }
+
                 _charactersState.value = _charactersState.value.copy(
-                    list = response.results,
+                    list = allCharacters,
                     loading = false,
                     error = null
                 )
