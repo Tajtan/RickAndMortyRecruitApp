@@ -1,5 +1,6 @@
 package com.example.rickandmortyrecruitapp
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -24,7 +24,8 @@ import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun CharactersScreen(
-    viewState: MainViewModel.CharactersState
+    viewState: MainViewModel.CharactersState,
+    navigateToDetails: (Character) -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -39,7 +40,7 @@ fun CharactersScreen(
                 Text(text = viewState.error)
             }
             else -> {
-                LoadedCharactersScreen(characters = viewState.list)
+                LoadedCharactersScreen(characters = viewState.list, navigateToDetails)
             }
         }
     }
@@ -47,27 +48,29 @@ fun CharactersScreen(
 
 @Composable
 fun LoadedCharactersScreen(
-    characters: List<Character>
+    characters: List<Character>,
+    navigateToDetails: (Character) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
         items(characters) {
             character ->
-            CharacterItem(character = character)
+            CharacterItem(character = character, navigateToDetails)
         }
     }
 }
 
 @Composable
 fun CharacterItem(
-    character: Character
+    character: Character,
+    navigateToDetails: (Character) -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-
+                navigateToDetails(character)
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {

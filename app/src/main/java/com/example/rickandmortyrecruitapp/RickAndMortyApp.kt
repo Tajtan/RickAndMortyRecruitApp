@@ -14,9 +14,15 @@ fun RickAndMortyApp(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = Screen.Characters.route) {
         composable(route = Screen.Characters.route) {
-            CharactersScreen(viewState = viewState)
+            CharactersScreen(viewState = viewState, navigateToDetails = {
+                navController.currentBackStackEntry?.savedStateHandle?.set("character", it)
+                navController.navigate(Screen.Details.route)
+            } )
 
         }
+        composable(route = Screen.Details.route) {
+            val character = navController.previousBackStackEntry?.savedStateHandle?.get<Character>("character") ?: Character("","","","","", Character.Origin(""), Character.Location(""), "", emptyList())
+            DetailsScreen(character = character)
+        }
     }
-
 }
