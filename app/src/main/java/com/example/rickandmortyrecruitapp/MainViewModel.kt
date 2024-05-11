@@ -18,6 +18,8 @@ class MainViewModel: ViewModel() {
         viewModelScope.launch {
             try {
                 val allCharacters: MutableList<Character> = mutableListOf()
+                val allEpisodes: MutableList<Episode> = mutableListOf()
+                val allCharactersWithEpisodes: MutableList<CharacterWithEpisodes> = mutableListOf()
                 var currentPage = 1
                 var totalPages = 1
 
@@ -30,8 +32,37 @@ class MainViewModel: ViewModel() {
                     currentPage++
                 }
 
+                currentPage = 1
+                totalPages = 1
+
+                while (currentPage <= totalPages) {
+                    val response = characterService.getEpisodes(currentPage)
+                    totalPages = response.info.pages
+
+                    allEpisodes.addAll(response.results)
+
+                    currentPage++
+                }
+
+                allCharacters.forEach { character ->
+                    val episodesForCharacter = allEpisodes.filter { character.episode.contains(it.url) }
+                    allCharactersWithEpisodes.add(
+                        CharacterWithEpisodes(
+                            name = character.name,
+                            status = character.status,
+                            species = character.species,
+                            type = character.type,
+                            gender = character.gender,
+                            origin = character.origin,
+                            location = character.location,
+                            image = character.image,
+                            episode = episodesForCharacter
+                        )
+                    )
+                }
+
                 _charactersState.value = _charactersState.value.copy(
-                    list = allCharacters,
+                    list = allCharactersWithEpisodes,
                     loading = false,
                     error = null
                 )
@@ -46,7 +77,7 @@ class MainViewModel: ViewModel() {
 
     data class CharactersState(
         val loading: Boolean = true,
-        val list: List<Character> = emptyList(),
+        val list: List<CharacterWithEpisodes> = emptyList(),
         val error: String? = null
     )
 }

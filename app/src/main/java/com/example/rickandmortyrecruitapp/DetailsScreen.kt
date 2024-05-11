@@ -36,7 +36,7 @@ import coil.compose.rememberAsyncImagePainter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(character: Character, onBackNavClicked: () -> Unit) {
+fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -100,6 +100,7 @@ fun DetailsScreen(character: Character, onBackNavClicked: () -> Unit) {
             }
             ProfileText(label = "Gender", attribute = character.gender)
             ProfileText(label = "Origin", attribute = character.origin.name)
+            Text(text = character.episode.toString())
         }
     }
 }

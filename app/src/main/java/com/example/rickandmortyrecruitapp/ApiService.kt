@@ -20,4 +20,7 @@ val characterService = retrofit.create(ApiService::class.java)
 interface ApiService {
     @GET("character")
     suspend fun getCharacters(@Query("page") page: Int): CharactersResponse
+
+    @GET("episode")
+    suspend fun getEpisodes(@Query("page") page: Int): EpisodeResponse
 }

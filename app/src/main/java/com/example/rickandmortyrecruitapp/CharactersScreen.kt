@@ -39,7 +39,7 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun CharactersScreen(
     viewState: MainViewModel.CharactersState,
-    navigateToDetails: (Character) -> Unit
+    navigateToDetails: (CharacterWithEpisodes) -> Unit
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -63,8 +63,8 @@ fun CharactersScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoadedCharactersScreen(
-    characters: List<Character>,
-    navigateToDetails: (Character) -> Unit
+    characters: List<CharacterWithEpisodes>,
+    navigateToDetails: (CharacterWithEpisodes) -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     Scaffold(
@@ -95,8 +95,8 @@ fun LoadedCharactersScreen(
 
 @Composable
 fun CharacterItem(
-    character: Character,
-    navigateToDetails: (Character) -> Unit
+    character: CharacterWithEpisodes,
+    navigateToDetails: (CharacterWithEpisodes) -> Unit
 ) {
         Row(
             modifier = Modifier
