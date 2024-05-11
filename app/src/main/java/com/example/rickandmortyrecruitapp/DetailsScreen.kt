@@ -4,13 +4,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -58,6 +62,7 @@ fun DetailsScreen(character: Character, onBackNavClicked: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
+                .verticalScroll(rememberScrollState())
         ) {
             Box(
                 contentAlignment = Alignment.Center,
@@ -78,7 +83,6 @@ fun DetailsScreen(character: Character, onBackNavClicked: () -> Unit) {
                         .padding(5.dp)
                 )
             }
-
             Text(text = character.name, modifier = Modifier.padding(5.dp))
             Image(
                 painter = rememberAsyncImagePainter(model = character.image),
@@ -90,18 +94,12 @@ fun DetailsScreen(character: Character, onBackNavClicked: () -> Unit) {
                 alignment = Alignment.CenterEnd
             )
             ProfileText(label = "Last known location", attribute = character.location.name)
-            //Text(text = character.location.name)
             ProfileText(label = "Species", attribute = character.species)
             if (character.type.isNotEmpty()) {
                 ProfileText(label = "Type", attribute = character.type)
             }
-           // Text(text = character.species)
-            //Text(text = character.type)
             ProfileText(label = "Gender", attribute = character.gender)
-            //Text(text = character.gender)
             ProfileText(label = "Origin", attribute = character.origin.name)
-            //Text(text = character.origin.name)
-            //Text(text = character.episode.toString())
         }
     }
 }
@@ -121,6 +119,6 @@ fun ProfileText(label: String, attribute: String) {
             text = attribute,
             style = MaterialTheme.typography.bodyMedium
         )
+        Spacer(modifier = Modifier.height(10.dp))
     }
-
 }
