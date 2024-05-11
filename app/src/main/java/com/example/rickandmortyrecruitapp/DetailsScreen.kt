@@ -31,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -119,10 +120,30 @@ fun ProfileText(label: String, attribute: String) {
             text = label,
             style = MaterialTheme.typography.titleSmall
         )
-        Text(
-            text = attribute,
-            style = MaterialTheme.typography.bodyMedium
-        )
+        Row(
+
+        ) {
+            Text(
+                text = attribute,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            if (label == "Gender:") {
+                Icon(
+                    painter =
+                    when(attribute) {
+                        "Male" -> painterResource(id = R.drawable.baseline_male_24)
+                        "Female" -> painterResource(id = R.drawable.baseline_female_24)
+                        "Genderless" -> painterResource(id = R.drawable.baseline_water_drop_24)
+                        else -> painterResource(id = R.drawable.baseline_question_mark_24)
+                    },
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(15.dp)
+                        .align(Alignment.CenterVertically)
+                )
+
+            }
+        }
         Spacer(modifier = Modifier.height(10.dp))
     }
 }
