@@ -1,5 +1,6 @@
 package com.example.rickandmortyrecruitapp
 
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,7 +20,7 @@ fun RickAndMortyApp(navController: NavHostController) {
                 navController.navigate(Screen.Details.route)
             } )
         }
-        composable(route = Screen.Details.route) {
+        composable(route = Screen.Details.route, exitTransition = {scaleOut()}) {
             val character = navController.previousBackStackEntry?.savedStateHandle?.get<CharacterWithEpisodes>("character") ?:
             CharacterWithEpisodes("","","","","", Origin(""), Location(""), "", emptyList())
             DetailsScreen(character = character, onBackNavClicked = { navController.navigateUp() } )
