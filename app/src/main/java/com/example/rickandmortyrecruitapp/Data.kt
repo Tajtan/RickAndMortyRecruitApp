@@ -1,7 +1,9 @@
 package com.example.rickandmortyrecruitapp
 
 import android.os.Parcelable
+import androidx.compose.runtime.Immutable
 import kotlinx.parcelize.Parcelize
+import java.util.UUID
 
 data class Character(
     val name: String,
@@ -37,6 +39,7 @@ data class EpisodeResponse(
     val results: List<Episode>
 )
 
+@Immutable
 @Parcelize
 data class CharacterWithEpisodes(
     val name: String,
@@ -47,7 +50,8 @@ data class CharacterWithEpisodes(
     val origin: Origin,
     val location: Location,
     val image: String,
-    val episode: List<Episode>
+    val episode: List<Episode>,
+    val id: String = UUID.randomUUID().toString()
 ) : Parcelable
 
 @Parcelize

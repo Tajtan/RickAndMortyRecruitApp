@@ -83,7 +83,7 @@ fun LoadedCharactersScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            items(characters) {
+            items(characters, key = { it.id }) {
                     character ->
                 CharacterItem(character = character, navigateToDetails)
             }
