@@ -42,6 +42,7 @@ data class EpisodeResponse(
 @Immutable
 @Parcelize
 data class CharacterWithEpisodes(
+    val id: Int,
     val name: String,
     val status: String,
     val species: String,
@@ -50,8 +51,7 @@ data class CharacterWithEpisodes(
     val origin: Origin,
     val location: Location,
     val image: String,
-    val episode: List<Episode>,
-    val id: String = UUID.randomUUID().toString()
+    val episode: List<Episode>
 ) : Parcelable
 
 @Parcelize

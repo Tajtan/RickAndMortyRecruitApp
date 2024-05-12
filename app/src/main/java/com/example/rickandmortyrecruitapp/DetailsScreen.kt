@@ -200,6 +200,6 @@ fun Preview() {
         Episode("Pilot", "December 2, 2013", "S01E01", "https://rickandmortyapi.com/api/episode/1"),
         Episode("The Ricklantis Mixup", "September 10, 2017", "S03E07", "https://rickandmortyapi.com/api/episode/28")
     )
-    val previewCharacter = CharacterWithEpisodes("Rick Sanchez","Alive","Human","typeTest","Male", Origin("Earth"), Location("Citadel"), "", previewEpisodes)
+    val previewCharacter = CharacterWithEpisodes(1,"Rick Sanchez","Alive","Human","typeTest","Male", Origin("Earth"), Location("Citadel"), "", previewEpisodes)
     DetailsScreen(character = previewCharacter) {}
 }
