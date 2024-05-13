@@ -22,7 +22,7 @@ fun RickAndMortyApp(navController: NavHostController) {
         }
         composable(route = Screen.Details.route, exitTransition = {scaleOut()}) {
             val character = navController.previousBackStackEntry?.savedStateHandle?.get<CharacterWithEpisodes>("character") ?:
-            CharacterWithEpisodes("","","","","", Origin(""), Location(""), "", emptyList())
+            CharacterWithEpisodes(0,"","","","", "", Origin(""), Location(""), "", emptyList())
             DetailsScreen(character = character, onBackNavClicked = { navController.navigateUp() } )
         }
     }

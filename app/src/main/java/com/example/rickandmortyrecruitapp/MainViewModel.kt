@@ -48,6 +48,7 @@ class MainViewModel: ViewModel() {
                     val episodesForCharacter = allEpisodes.filter { character.episode.contains(it.url) }
                     allCharactersWithEpisodes.add(
                         CharacterWithEpisodes(
+                            id = character.id,
                             name = character.name,
                             status = character.status,
                             species = character.species,
