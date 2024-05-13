@@ -15,12 +15,16 @@ fun RickAndMortyApp(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = Screen.Characters.route) {
         composable(route = Screen.Characters.route) {
-            CharactersScreen(viewState = viewState, navigateToDetails = {
-                navController.currentBackStackEntry?.savedStateHandle?.set("character", it)
-                navController.navigate(Screen.Details.route)
-            } )
+            CharactersScreen(
+                viewState = viewState,
+                navigateToDetails = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set("character", it)
+                    navController.navigate(Screen.Details.route)
+                },
+                onRetryClicked = { charactersViewModel.retryFetchCharacters() }
+            )
         }
-        composable(route = Screen.Details.route, exitTransition = {scaleOut()}) {
+        composable(route = Screen.Details.route) {
             val character = navController.previousBackStackEntry?.savedStateHandle?.get<CharacterWithEpisodes>("character") ?:
             CharacterWithEpisodes(0,"","","","", "", Origin(""), Location(""), "", emptyList())
             DetailsScreen(character = character, onBackNavClicked = { navController.navigateUp() } )

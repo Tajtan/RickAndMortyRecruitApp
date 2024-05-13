@@ -76,6 +76,11 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    fun retryFetchCharacters() {
+        _charactersState.value = CharactersState(loading = true, list = emptyList(), error = null)
+        fetchCharacters()
+    }
+
     data class CharactersState(
         val loading: Boolean = true,
         val list: List<CharacterWithEpisodes> = emptyList(),
