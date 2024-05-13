@@ -110,7 +110,7 @@ fun CharacterItem(
                     .size(96.dp)
                     .padding(8.dp)
                     .border(
-                        BorderStroke(2.dp, Color.LightGray),
+                        BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
                         CircleShape
                     )
                     .clip(CircleShape)
