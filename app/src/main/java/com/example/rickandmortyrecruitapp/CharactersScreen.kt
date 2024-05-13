@@ -64,7 +64,7 @@ fun LoadedCharactersScreen(
     characters: List<CharacterWithEpisodes>,
     navigateToDetails: (CharacterWithEpisodes) -> Unit
 ) {
-    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -119,8 +119,8 @@ fun CharacterItem(
                 modifier = Modifier
                     .padding(16.dp)
             ) {
-                Text(text = character.name, style = MaterialTheme.typography.titleMedium)
-                Text(text = character.status, style = MaterialTheme.typography.bodyMedium, color = Color.Gray)
+                Text(text = character.name, style = MaterialTheme.typography.titleLarge)
+                Text(text = character.status, style = MaterialTheme.typography.bodyLarge)
             }
         }
     }
