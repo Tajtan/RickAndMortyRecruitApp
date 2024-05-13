@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -35,7 +35,8 @@ import coil.compose.rememberAsyncImagePainter
 @Composable
 fun CharactersScreen(
     viewState: MainViewModel.CharactersState,
-    navigateToDetails: (CharacterWithEpisodes) -> Unit
+    navigateToDetails: (CharacterWithEpisodes) -> Unit,
+    onRetryClicked: () -> Unit
 ) {
     Box(
         modifier = Modifier
@@ -49,7 +50,16 @@ fun CharactersScreen(
                 )
             }
             viewState.error != null -> {
-                Text(text = "Error loading characters.\nCheck Your Internet connection.", textAlign = TextAlign.Center)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+
+                ) {
+                    Text(text = "Error loading characters.\n\nCheck Your Internet connection.", textAlign = TextAlign.Center)
+                    Button(onClick = { onRetryClicked() }) {
+                        Text(text = "Retry", textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+
             }
             else -> {
                 LoadedCharactersScreen(characters = viewState.list, navigateToDetails)
@@ -107,10 +117,10 @@ fun CharacterItem(
                 painter = rememberAsyncImagePainter(model = character.image),
                 contentDescription = "Character image",
                 modifier = Modifier
-                    .size(96.dp)
+                    .size(107.dp)
                     .padding(8.dp)
                     .border(
-                        BorderStroke(2.dp, MaterialTheme.colorScheme.outline),
+                        BorderStroke(3.dp, statusColor(status = character.status)),
                         CircleShape
                     )
                     .clip(CircleShape)
@@ -120,7 +130,7 @@ fun CharacterItem(
                     .padding(16.dp)
             ) {
                 Text(text = character.name, style = MaterialTheme.typography.titleLarge)
-                Text(text = character.status, style = MaterialTheme.typography.bodyLarge)
+                Text(text = character.status, style = MaterialTheme.typography.bodySmall)
             }
         }
     }
