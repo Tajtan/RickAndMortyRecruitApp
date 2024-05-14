@@ -45,7 +45,11 @@ class MainViewModel: ViewModel() {
                 }
 
                 allCharacters.forEach { character ->
-                    val episodesForCharacter = allEpisodes.filter { character.episode.contains(it.url) }
+                    val episodesForCharacter = allEpisodes.filter { episode ->
+                        character.episode.contains(episode.url)
+                    }.map { episode ->
+                        episode.copy(episode = formatEpisode(episode.episode))
+                    }
                     allCharactersWithEpisodes.add(
                         CharacterWithEpisodes(
                             id = character.id,
@@ -79,6 +83,11 @@ class MainViewModel: ViewModel() {
     fun retryFetchCharacters() {
         _charactersState.value = CharactersState(loading = true, list = emptyList(), error = null)
         fetchCharacters()
+    }
+
+    private fun formatEpisode(episode: String): String {
+        val parts = episode.split("E")
+        return "S.${parts[0].removePrefix("S").toInt()} E.${parts[1].toInt()}"
     }
 
     data class CharactersState(

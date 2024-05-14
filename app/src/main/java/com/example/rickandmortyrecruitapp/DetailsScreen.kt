@@ -25,6 +25,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -113,8 +114,9 @@ fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit
                 }
             }
             ProfileText(label = "Last known location", attribute = character.location.name)
-            Text(text = "Episodes", style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(start = 8.dp))
+            ProfileText(label = "Episode count", attribute = character.episode.size.toString())
             EpisodesLazyRow(character.episode)
+            Spacer(modifier = Modifier.height(16.dp))
             ProfileText(label = "Species", attribute = character.species)
             if (character.type.isNotEmpty()) {
                 ProfileText(label = "Type", attribute = character.type)
@@ -169,7 +171,7 @@ fun EpisodesLazyRow(episodes: List<Episode>) {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(bottom = 8.dp, start = 8.dp)
     ) {
         items(episodes, key = { it.episode }) {
             episode ->
@@ -183,7 +185,8 @@ fun EpisodeItem(episode: Episode) {
     Card(
         modifier = Modifier
             .padding(end = 10.dp)
-            .fillMaxSize()
+            .fillMaxSize(),
+        elevation = CardDefaults.cardElevation(8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -194,7 +197,7 @@ fun EpisodeItem(episode: Episode) {
             Text(text = episode.episode, style = MaterialTheme.typography.titleLarge)
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 20.dp),
+                    .padding(horizontal = 20.dp)
             ) {
                 Text(text = episode.name, style = MaterialTheme.typography.bodySmall)
                 Text(text = episode.air_date, style = MaterialTheme.typography.bodySmall)
