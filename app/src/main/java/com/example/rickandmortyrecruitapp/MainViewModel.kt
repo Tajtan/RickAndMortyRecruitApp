@@ -85,7 +85,7 @@ class MainViewModel : ViewModel() {
             }.map { episode ->
                 EpisodeWithoutUrl(
                     name = episode.name,
-                    air_date = episode.air_date,
+                    airDate = episode.air_date,
                     episode = formatEpisode(episode.episode)
                 )
             }

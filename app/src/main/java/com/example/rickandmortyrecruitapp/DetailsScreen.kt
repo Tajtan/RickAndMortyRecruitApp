@@ -136,9 +136,7 @@ fun ProfileText(label: String, attribute: String) {
             text = label,
             style = MaterialTheme.typography.titleSmall
         )
-        Row(
-
-        ) {
+        Row {
             Text(
                 text = attribute,
                 style = MaterialTheme.typography.bodyMedium
@@ -198,7 +196,7 @@ fun EpisodeItem(episode: EpisodeWithoutUrl) {
                     .padding(horizontal = 20.dp)
             ) {
                 Text(text = episode.name, style = MaterialTheme.typography.bodySmall)
-                Text(text = episode.air_date, style = MaterialTheme.typography.bodySmall)
+                Text(text = episode.airDate, style = MaterialTheme.typography.bodySmall)
             }
 
         }

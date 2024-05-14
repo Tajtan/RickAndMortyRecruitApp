@@ -66,6 +66,6 @@ data class Origin(
 @Parcelize
 data class EpisodeWithoutUrl(
     val name: String,
-    val air_date: String,
+    val airDate: String,
     val episode: String
 ) : Parcelable

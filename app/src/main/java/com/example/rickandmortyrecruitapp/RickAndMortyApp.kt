@@ -1,6 +1,5 @@
 package com.example.rickandmortyrecruitapp
 
-import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
