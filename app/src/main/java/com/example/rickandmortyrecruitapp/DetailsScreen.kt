@@ -88,12 +88,12 @@ fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit
                     contentScale = ContentScale.Crop
                 )
                 Column(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize().padding(horizontal = 8.dp)
                 ) {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .padding(start = 8.dp, top = 8.dp)
+                            .padding(top = 8.dp)
                             .border(
                                 width = 2.dp,
                                 shape = RoundedCornerShape(20),
@@ -108,7 +108,6 @@ fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit
                         )
                     }
                     Text(text = character.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier
-                        .padding(start = 8.dp)
                         .wrapContentWidth())
                 }
             }
