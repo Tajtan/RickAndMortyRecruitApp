@@ -114,9 +114,15 @@ class MainViewModel : ViewModel() {
         return "S.${parts[0].removePrefix("S").toInt()} E.${parts[1].toInt()}"
     }
 
+    fun pickCharacter(character: CharacterWithEpisodes) {
+        val currentState = _charactersState.value
+        _charactersState.value = currentState.copy(displayedCharacter = character)
+    }
+
     data class CharactersState(
         val loading: Boolean = true,
         val list: List<CharacterWithEpisodes> = emptyList(),
-        val error: String? = null
+        val error: String? = null,
+        val displayedCharacter: CharacterWithEpisodes? = null
     )
 }
