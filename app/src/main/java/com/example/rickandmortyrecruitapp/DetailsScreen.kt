@@ -1,7 +1,6 @@
 package com.example.rickandmortyrecruitapp
 
 import android.util.Log
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -46,7 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit) {
     Scaffold(
@@ -167,7 +166,7 @@ fun ProfileText(label: String, attribute: String) {
 }
 
 @Composable
-fun EpisodesLazyRow(episodes: List<Episode>) {
+fun EpisodesLazyRow(episodes: List<EpisodeWithoutUrl>) {
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
@@ -181,7 +180,7 @@ fun EpisodesLazyRow(episodes: List<Episode>) {
 }
 
 @Composable
-fun EpisodeItem(episode: Episode) {
+fun EpisodeItem(episode: EpisodeWithoutUrl) {
     Card(
         modifier = Modifier
             .padding(end = 10.dp)
@@ -231,8 +230,8 @@ fun statusColor(status: String): Color {
 @Composable
 fun Preview() {
     val previewEpisodes = listOf(
-        Episode("Pilot", "December 2, 2013", "S01E01", "https://rickandmortyapi.com/api/episode/1"),
-        Episode("The Ricklantis Mixup", "September 10, 2017", "S03E07", "https://rickandmortyapi.com/api/episode/28")
+        EpisodeWithoutUrl("Pilot", "December 2, 2013", "S01E01"),
+        EpisodeWithoutUrl("The Ricklantis Mixup", "September 10, 2017", "S03E07")
     )
     val previewCharacter = CharacterWithEpisodes(1,"Rick Sanchez","Alive","Human","typeTest","Male", Origin("Earth"), Location("Citadel"), "", previewEpisodes)
     DetailsScreen(character = previewCharacter) {}

@@ -3,7 +3,6 @@ package com.example.rickandmortyrecruitapp
 import android.os.Parcelable
 import androidx.compose.runtime.Immutable
 import kotlinx.parcelize.Parcelize
-import java.util.UUID
 
 data class Character(
     val id: Int,
@@ -27,13 +26,12 @@ data class Pages(
     val pages: Int
 )
 
-@Parcelize
 data class Episode(
     val name: String,
     val air_date: String,
     val episode: String,
     val url: String
-) : Parcelable
+)
 
 data class EpisodeResponse(
     val info: Pages,
@@ -52,7 +50,7 @@ data class CharacterWithEpisodes(
     val origin: Origin,
     val location: Location,
     val image: String,
-    val episode: List<Episode>
+    val episode: List<EpisodeWithoutUrl>
 ) : Parcelable
 
 @Parcelize
@@ -64,3 +62,10 @@ data class Location(
 data class Origin(
     val name: String
 ): Parcelable
+
+@Parcelize
+data class EpisodeWithoutUrl(
+    val name: String,
+    val air_date: String,
+    val episode: String
+) : Parcelable
