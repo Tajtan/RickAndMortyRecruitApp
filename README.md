@@ -1,18 +1,19 @@
 Recruitment App for Moatable with invited user @Moatable-Internship-Android.
 
-App fetches a list of characters and episodes asynchronously mapping them togeher.
-In case of an error app shows a message and a retry button.
-During loading it shows progress indicator.
-App presents presents a list of characters with each row consisting of image, name and status.
-Upon clicking an item (character) app navigates to characte's details screen, including episodes in which it appears.
-App theme, colors and typography are made with Material 3 Theme Builder and then modified to fit Rick and Morty style.
-App has light mode and dark mode depending on the phone settings.
-Character has color indicator regarding his status in both screens.
-App uses Jetpack Compose, coroutines, Retrofit, viewmodel, navigation-compose, coil and google fonts.
-App has couple unit tests in JUnit.
-App has classes and functions explained in comments.
-App was tested on my real device.
-App loads everything it needs at the start, because fetching and mapping takes very little time and navigating between screens is smooth.
+App features:
+- App fetches a list of characters and episodes asynchronously mapping them togeher.
+- In case of an error app shows a message and a retry button.
+- During loading it shows progress indicator.
+- App presents presents a list of characters with each row consisting of image, name and status.
+- Upon clicking an item (character) app navigates to characte's details screen, including episodes in which it appears.
+- App theme, colors and typography are made with Material 3 Theme Builder and then modified to fit Rick and Morty style.
+- App has light mode and dark mode depending on the phone settings.
+- Character has color indicator regarding his status in both screens.
+- App uses Jetpack Compose, coroutines, Retrofit, viewmodel, navigation-compose, coil and google fonts.
+- App has couple unit tests in JUnit.
+- App has classes and functions explained in comments.
+- App was tested on my real device.
+- App loads everything it needs at the start, because fetching and mapping takes very little time and navigating between screens is smooth.
 
 Ideas to expand the app in the future:
 - More unit test with JUnit and Mockito
