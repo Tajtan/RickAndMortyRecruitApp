@@ -1,6 +1,5 @@
-package com.example.rickandmortyrecruitapp
+package com.example.rickandmortyrecruitapp.views
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -44,7 +43,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.rickandmortyrecruitapp.R
+import com.example.rickandmortyrecruitapp.data.CharacterWithEpisodes
+import com.example.rickandmortyrecruitapp.data.EpisodeWithoutUrl
+import com.example.rickandmortyrecruitapp.data.Location
+import com.example.rickandmortyrecruitapp.data.Origin
 
+// UI containing details screen of a selected character. It takes two parameters: character to display details and function to navigate back to characters list.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit) {
@@ -108,7 +113,8 @@ fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit
                         )
                     }
                     Text(text = character.name, style = MaterialTheme.typography.bodyLarge, modifier = Modifier
-                        .wrapContentWidth())
+                        .wrapContentWidth()
+                    )
                 }
             }
             ProfileText(label = "Last known location", attribute = character.location.name)
@@ -125,6 +131,7 @@ fun DetailsScreen(character: CharacterWithEpisodes, onBackNavClicked: () -> Unit
     }
 }
 
+// Function to compose a profile text taking two parameters: label (for example Gender) and attribute (for example Male). Made to have less repeated code.
 @Composable
 fun ProfileText(label: String, attribute: String) {
     Column(
@@ -162,6 +169,7 @@ fun ProfileText(label: String, attribute: String) {
     }
 }
 
+// Function to compose Lazy Row containing episodes that displayed characters was in.
 @Composable
 fun EpisodesLazyRow(episodes: List<EpisodeWithoutUrl>) {
     LazyRow(
@@ -176,6 +184,7 @@ fun EpisodesLazyRow(episodes: List<EpisodeWithoutUrl>) {
     }
 }
 
+// Function representing how singular episode is composed on the screen.
 @Composable
 fun EpisodeItem(episode: EpisodeWithoutUrl) {
     Card(
@@ -203,10 +212,10 @@ fun EpisodeItem(episode: EpisodeWithoutUrl) {
     }
 }
 
+// Function to determine color of outline (imagine in characters list, status label in details screen) based on characters status and light/dark theme currently on th phone.
 @Composable
 fun statusColor(status: String): Color {
     val darkTheme: Boolean = isSystemInDarkTheme()
-    Log.e("dark theme", darkTheme.toString())
 
     return if (darkTheme) {
         when (status) {
@@ -223,6 +232,7 @@ fun statusColor(status: String): Color {
     }
 }
 
+// Preview function to ease creating and maintaining details screen UI without compiling code every time.
 @Preview
 @Composable
 fun Preview() {

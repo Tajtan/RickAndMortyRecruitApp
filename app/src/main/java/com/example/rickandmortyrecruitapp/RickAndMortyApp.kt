@@ -6,7 +6,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.rickandmortyrecruitapp.views.CharactersScreen
+import com.example.rickandmortyrecruitapp.views.DetailsScreen
+import com.example.rickandmortyrecruitapp.views.Screen
 
+// Composable function defining how navigation in app works and creating instance of MainViewModel with charactersState.
 @Composable
 fun RickAndMortyApp(navController: NavHostController) {
     val charactersViewModel: MainViewModel = viewModel()

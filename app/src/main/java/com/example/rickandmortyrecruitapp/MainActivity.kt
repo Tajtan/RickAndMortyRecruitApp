@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.rickandmortyrecruitapp.ui.theme.RickAndMortyRecruitAppTheme
 
+// Main Activity class to enable integration with Jetpack Compose, perform necessary initialization of the activity, apply App Theme, create a Nav Controller for navigation within the app and call RickAndMortyApp which is a start of the app.
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

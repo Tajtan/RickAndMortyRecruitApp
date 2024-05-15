@@ -1,4 +1,4 @@
-package com.example.rickandmortyrecruitapp
+package com.example.rickandmortyrecruitapp.views
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -31,7 +31,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.example.rickandmortyrecruitapp.MainViewModel
+import com.example.rickandmortyrecruitapp.R
+import com.example.rickandmortyrecruitapp.data.CharacterWithEpisodes
 
+// Starting destination screen, which based on viewState (representing the state of list of characters being loaded) displays:
+// - Circular Progress Indicator when loading data,
+// - Error message with retry button when an error occurs (with on Retry Clicked parameter used for retry button),
+// - Loaded Characters Screen Composable when loading is finished and there is no error. It passes down list of characters to display and navigate to details function.
 @Composable
 fun CharactersScreen(
     viewState: MainViewModel.CharactersState,
@@ -45,9 +52,7 @@ fun CharactersScreen(
     ) {
         when {
             viewState.loading -> {
-                CircularProgressIndicator(
-
-                )
+                CircularProgressIndicator()
             }
             viewState.error != null -> {
                 Column(
@@ -59,7 +64,6 @@ fun CharactersScreen(
                         Text(text = "Retry", textAlign = TextAlign.Center, style = MaterialTheme.typography.bodyMedium)
                     }
                 }
-
             }
             else -> {
                 LoadedCharactersScreen(characters = viewState.list, navigateToDetails)
@@ -68,6 +72,7 @@ fun CharactersScreen(
     }
 }
 
+// Screen to display list of characters. It contains a scaffold with top bar and a lazy column with id of a CharacterWithEpisodes as key for performance.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoadedCharactersScreen(
@@ -93,7 +98,7 @@ fun LoadedCharactersScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            items(characters, key = { it.id }) {
+            items(characters, key = { it.id } ) {
                     character ->
                 CharacterItem(character = character, navigateToDetails)
             }
@@ -101,6 +106,9 @@ fun LoadedCharactersScreen(
     }
 }
 
+// Composable function representing singular item in the list of characters. It displays character's image, name, and status. It takes two parameters:
+// - the character to display,
+// - a function to navigate to the details screen when the item is clicked (whole row is clickable).
 @Composable
 fun CharacterItem(
     character: CharacterWithEpisodes,
