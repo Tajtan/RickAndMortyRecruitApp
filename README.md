@@ -1,5 +1,3 @@
-Recruitment App for Moatable with invited user @Moatable-Internship-Android.
-
 App features:
 - App fetches a list of characters and episodes asynchronously mapping them togeher.
 - In case of an error app shows a message and a retry button.
